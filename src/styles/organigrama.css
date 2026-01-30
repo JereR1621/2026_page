@@ -1,0 +1,192 @@
+/**
+ * Organigrama: estructura de árbol organizacional.
+ */
+
+.org-tree {
+  /** Control centralizado del ancho del nodo */
+  --node-width: 200px;
+
+  margin-top: 1rem;
+  padding: 2rem 1.2rem;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.org-level {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.org-level--1 {
+  margin-bottom: 1rem;
+}
+
+.org-level--2 {
+  width: 100%;
+  position: relative;
+}
+
+/** Línea vertical que conecta nivel 1 con nivel 2 */
+.org-level--2::before {
+  content: '';
+  position: absolute;
+  top: -1.8rem;
+  left: 50%;
+  width: 2px;
+  height: 1.8rem;
+  background: transparent;
+  border-left: 2px dashed #777;
+  transform: translateX(-50%);
+}
+
+/** Contenedor de nodos del nivel 2 */
+.org-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 36px;
+  width: 100%;
+  max-width: 1080px;
+  position: relative;
+  padding: 2.2rem 0 0 0;
+  margin: 0 auto;
+}
+
+/** Evita desbordes horizontales en móvil */
+.org-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: calc(var(--node-width) / 2);
+  right: calc(var(--node-width) / 2);
+  height: 2px;
+  background: transparent;
+  border-top: 2px dashed #777;
+}
+
+/** Nodos del nivel 2 */
+.org-row .org-node {
+  position: relative;
+  z-index: 10;
+  background: white;
+  border: 1px solid #ddd;
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+/** Línea vertical que conecta cada nodo con la línea horizontal */
+.org-row .org-node::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2rem;
+  background: transparent;
+  border-left: 2px dashed #777;
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/** Oculta conectores HTML en favor de pseudoelementos */
+.org-connector{
+  display: none;
+}
+
+/** Estilos base del nodo */
+.org-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: center;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+
+  /** El ancho del nodo debe coincidir con --node-width */
+  min-width: var(--node-width);
+}
+
+/** Icono del nodo */
+.org-node__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #87CEEB 0%, #4A90E2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  flex-shrink: 0;
+  font-size: 24px;
+}
+
+/** Título del nodo */
+.org-node__title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+/**
+ * Texto del nodo.
+ */
+
+/** =========================
+ * Responsive
+ * ========================= */
+
+@media (max-width: 980px) {
+  .org-tree {
+    --node-width: 220px;
+    padding: 1.5rem 1rem;
+  }
+
+  .org-row {
+    max-width: 100%;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .org-tree {
+    --node-width: 100%;
+    padding: 1.25rem 0.8rem;
+    gap: 1.5rem;
+  }
+
+  .org-level--2::before {
+    display: none;
+  }
+
+  .org-row {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0;
+  }
+
+  .org-row::before {
+    display: none;
+  }
+
+  .org-row .org-node::before {
+    display: none;
+  }
+
+  .org-node {
+    width: 100%;
+    max-width: 320px;
+  }
+}

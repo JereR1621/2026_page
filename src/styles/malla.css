@@ -1,0 +1,248 @@
+/** Malla curricular: vista horizontal. */
+/** Vista tipo timeline con resaltado de relaciones curriculares. */
+/** Lógica de prerrequisitos diseñada para integrar con backend o data/malla.json. */
+
+/** Panel informativo superior. */
+.malla-hint {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0 16px;
+  padding: 12px 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.malla-hint__left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.malla-hint__title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.malla-hint__desc {
+  margin: 0;
+  font-size: 13px;
+  color: #444;
+}
+
+/** Leyenda de colores. */
+.malla-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  font-size: 12px;
+  color: #333;
+}
+
+.malla-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.malla-dot--selected {
+  background: #111827;
+}
+
+.malla-dot--prereq {
+  background: #16a34a;
+}
+
+.malla-dot--next {
+  background: #2563eb;
+}
+
+.malla-dot--tel {
+  background: #a855f7;
+}
+
+/** Contenedor principal horizontal. */
+.malla {
+  border-radius: 14px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 14px;
+}
+
+/** Fila de semestres. */
+.malla-track {
+  display: flex;
+  gap: 14px;
+  min-width: max-content;
+}
+
+/** Columna de semestre. */
+.semester-col {
+  width: 250px;
+  flex: 0 0 auto;
+  border: 1px solid #eef0f3;
+  border-radius: 14px;
+  background: #fafafa;
+  padding: 10px;
+}
+
+.semester-col__title {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #0b2a4a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.semester-col__badge {
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #e8f1ff;
+  border: 1px solid #d6e6ff;
+  color: #0b2a4a;
+}
+
+/** Tarjeta de ramo. */
+.course-card {
+  cursor: pointer;
+  user-select: none;
+  border-radius: 12px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 8px;
+  transition: transform 0.08s ease, opacity 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.course-card__name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.25;
+}
+
+.course-card__meta {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: #555;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.course-pill {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid #e6e6e6;
+  background: #f8fafc;
+}
+
+.course-pill--tel {
+  border-color: #e9d5ff;
+  background: #faf5ff;
+}
+
+/** Estados de ramos. */
+.course-card.is-dim {
+  opacity: 0.35;
+  filter: grayscale(0.25);
+}
+
+.course-card.is-selected {
+  border-color: #111827;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+.course-card.is-prereq {
+  border-color: #16a34a;
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.15);
+}
+
+.course-card.is-next {
+  border-color: #2563eb;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+}
+
+/** Panel de detalle. */
+.malla-detail {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 14px;
+}
+
+.malla-panel {
+  border: 1px solid #e6e6e6;
+  border-radius: 14px;
+  background: #fff;
+  padding: 14px;
+}
+
+.malla-panel__title {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.malla-panel__subtitle {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: #444;
+}
+
+/** Lista de relaciones. */
+.malla-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: #222;
+}
+
+.malla-token {
+  font-style: normal;
+}
+
+.malla-token--prereq {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.malla-empty {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+}
+
+/** Botones de acción. */
+.malla-actions-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/** Responsive tablet. */
+@media (max-width: 920px) {
+  .malla-detail {
+    grid-template-columns: 1fr;
+  }
+}

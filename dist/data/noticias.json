@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "titulo": "Inauguración del Nuevo Laboratorio de Innovación Tecnológica",
+    "fecha": "2024-03-15",
+    "resumen": "La Facultad de Ingeniería inaugura un espacio equipado con tecnología de punta para investigación en IA y robótica.",
+    "contenido": "Contenido completo de la noticia...",
+    "tipo": "evento",
+    "visibilidad": "publico",
+    "autor": "Departamento de Computación",
+    "imagen": "",
+    "destacada": true,
+    "etiquetas": ["laboratorio", "innovación", "investigación"]
+  },
+  {
+    "id": 2,
+    "titulo": "Convocatoria para Proyectos de Titulación 2024",
+    "fecha": "2024-03-10",
+    "resumen": "Abierta la convocatoria para presentar propuestas de trabajos de titulación para el segundo semestre.",
+    "contenido": "Contenido completo de la noticia...",
+    "tipo": "administrativo",
+    "visibilidad": "publico",
+    "autor": "Secretaría Académica",
+    "imagen": "",
+    "destacada": false,
+    "etiquetas": ["titulación", "proyectos", "convocatoria"]
+  }
+]

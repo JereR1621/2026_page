@@ -1,0 +1,39 @@
+/** Ajustes responsive para móvil */
+
+body {
+  overflow-x: hidden;
+}
+
+@media (max-width: 992px) {
+  .admision-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cec-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .admision-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cec-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .org-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 8px;
+  }
+}

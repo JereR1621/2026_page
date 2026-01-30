@@ -1,0 +1,277 @@
+/*
+  Archivo: base.css
+  Descripción: Estilos globales y componentes UI del proyecto.
+  Convención: Secciones comentadas para facilitar mantención.
+*/
+
+:root {
+  /* Colores principales */
+  --primary: #0b3a6a;
+  --primary-light: #1a4d8c;
+  --primary-dark: #082a4f;
+  --secondary: #0b0ec5;
+  --secondary-light: #2d30e0;
+  --accent: #4CAF50;
+  --accent-light: #6BCF6F;
+  color-scheme: var(--bg-light);
+  
+  /* Colores de fondo */
+  --bg: #f6efef;
+  --bg-alt: #f6f7f9;
+  --bg-dark: #0b3a6a;
+  --bg-light: #f6efef;
+
+  /* Superficies (según UI oficial) */
+  --surface: #ece3e3;
+  --surface-2: #ffffff;
+  --hero-bg: #5b5b5b;
+  --nav-pill: #595959;
+  --border-soft: rgba(0,0,0,0.08);
+  
+  /* Colores de texto */
+  --text: #333333;
+  --text-light: #666666;
+  --text-lighter: #888888;
+  --text-on-dark: #ffffff;
+  --text-on-primary: #ffffff;
+  
+  /* Colores de estado */
+  --success: #4CAF50;
+  --warning: #FF9800;
+  --error: #F44336;
+  --info: #2196F3;
+  
+  /* Colores de malla */
+  --malla-obligatoria: #2196F3;
+  --malla-electiva: #9C27B0;
+  --malla-tel: #4CAF50;
+  --malla-formacion: #FF9800;
+  
+  /* Espaciado */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  
+  /* Container responsive corporativo */
+  --container-max: 1440px;
+  --container-fluid: 92%;
+  --pad: clamp(16px, 2vw, 36px);
+
+  /* Bordes */
+  --radius: 12px;
+  --radius-sm: 6px;
+  --radius-lg: 16px;
+  
+  /* Tipografía */
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 2rem;
+  
+  /* Sombras */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.12);
+  --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
+  
+  /* Transiciones */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base */
+body {
+  font-family: var(--font-family);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  font-size: var(--font-size-md);
+}
+
+/* =========================
+   CONTAINER RESPONSIVE
+   ========================= */
+.container {
+  width: min(var(--container-fluid), var(--container-max));
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+/* Secciones más amplias */
+.container--wide{
+  width: min(96%, 1680px);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+/* =========================
+   TIPOGRAFÍA
+   ========================= */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: var(--space-md);
+  color: var(--primary);
+}
+
+h1 { font-size: var(--font-size-xxl); }
+h2 {
+  font-size: var(--font-size-xl);
+  margin-top: var(--space-xl);
+}
+h3 { font-size: var(--font-size-lg); }
+
+p {
+  margin-bottom: var(--space-md);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-light);
+}
+
+/* =========================
+   LISTAS
+   ========================= */
+.list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.list li {
+  padding: var(--space-xs) 0;
+  position: relative;
+  padding-left: var(--space-lg);
+}
+
+.list li:before {
+  content: "•";
+  color: var(--primary);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* =========================
+   UTILIDADES
+   ========================= */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.mt-1 { margin-top: var(--space-sm); }
+.mb-1 { margin-bottom: var(--space-sm); }
+.mt-2 { margin-top: var(--space-md); }
+.mb-2 { margin-bottom: var(--space-md); }
+.mt-3 { margin-top: var(--space-lg); }
+.mb-3 { margin-bottom: var(--space-lg); }
+
+.hidden {
+  display: none !important;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Accesibilidad */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* =========================
+   RESPONSIVE BASE
+   ========================= */
+@media (max-width: 768px) {
+  :root {
+    --pad: clamp(14px, 4vw, 18px);
+    --font-size-xxl: 1.75rem;
+    --font-size-xl: 1.5rem;
+    --font-size-lg: 1.125rem;
+  }
+
+  h2 {
+    margin-top: var(--space-lg);
+  }
+}
+
+/* =========================================================
+   MEJORAS HEADER (solo layout: logo / menú / botones)
+   - Seguro: usa tus clases reales del HTML
+   ========================================================= */
+.header__content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* Logo + texto */
+.header__logo{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: auto;
+}
+
+.header__logo h1{
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.header__subtitle{
+  margin: 0;
+  font-size: .9rem;
+  color: var(--text-light);
+}
+
+/* Nav ocupa el espacio entre logo y botones */
+.header__nav{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+/* Zona de auth/botones no se aplasta */
+.header__auth{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Centrado del header en el panel de admin */
+.admin-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.admin-header .header-left,
+.admin-header .header-right{
+  flex: 0 0 auto;
+}

@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "updated": "2026-01-14",
+
+  "reglas_nivel_aprobado": {},
+
+  "prerequisitos_por_codigo": {},
+
+  "asignaturas": [
+
+    { "codigo": "S101", "nombre": "Introducción al Cálculo", "semestre": 1, "prerequisitos": [], "tel": false },
+    { "codigo": "S102", "nombre": "Introducción al Álgebra", "semestre": 1, "prerequisitos": [], "tel": false },
+    { "codigo": "S103", "nombre": "Introducción a la Ingeniería Civil en Computación e Informática", "semestre": 1, "prerequisitos": [], "tel": false },
+    { "codigo": "S104", "nombre": "Taller de Estrategias de Aprendizaje para Ingeniería", "semestre": 1, "prerequisitos": [], "tel": false },
+
+    { "codigo": "S201", "nombre": "Cálculo Diferencial e Integral", "semestre": 2, "prerequisitos": [], "tel": false },
+    { "codigo": "S202", "nombre": "Álgebra Lineal", "semestre": 2, "prerequisitos": [], "tel": false },
+    { "codigo": "S203", "nombre": "Física Newtoniana", "semestre": 2, "prerequisitos": [], "tel": false },
+    { "codigo": "S204", "nombre": "Programación Estructurada", "semestre": 2, "prerequisitos": [], "tel": false },
+    { "codigo": "S205", "nombre": "Taller de Habilidades Comunicativas para Ingeniería", "semestre": 2, "prerequisitos": [], "tel": false },
+
+    { "codigo": "S301", "nombre": "Cálculo en Varias Variables", "semestre": 3, "prerequisitos": [], "tel": false },
+    { "codigo": "S302", "nombre": "Ecuaciones Diferenciales", "semestre": 3, "prerequisitos": [], "tel": false },
+    { "codigo": "S303", "nombre": "Electromagnetismo", "semestre": 3, "prerequisitos": [], "tel": false },
+    { "codigo": "S304", "nombre": "Programación Orientada a Objetos", "semestre": 3, "prerequisitos": [], "tel": false },
+    { "codigo": "S305", "nombre": "Inglés para Ingeniería I", "semestre": 3, "prerequisitos": [], "tel": false },
+
+    { "codigo": "S401", "nombre": "Métodos Numéricos para Ingeniería", "semestre": 4, "prerequisitos": [], "tel": false },
+    { "codigo": "S402", "nombre": "Probabilidad y Estadística", "semestre": 4, "prerequisitos": [], "tel": false },
+    { "codigo": "S403", "nombre": "Óptica y Ondas", "semestre": 4, "prerequisitos": [], "tel": false },
+    { "codigo": "S404", "nombre": "Bases de Datos", "semestre": 4, "prerequisitos": [], "tel": false },
+    { "codigo": "S405", "nombre": "Desafío de Proyecto de Ingeniería I", "semestre": 4, "prerequisitos": [], "tel": false },
+    { "codigo": "S406", "nombre": "Inglés para Ingeniería II", "semestre": 4, "prerequisitos": [], "tel": false },
+
+    { "codigo": "S501", "nombre": "Diseño y Análisis de Algoritmos", "semestre": 5, "prerequisitos": [], "tel": false },
+    { "codigo": "S502", "nombre": "Fundamentos de Economía", "semestre": 5, "prerequisitos": [], "tel": false },
+    { "codigo": "S503", "nombre": "Investigación de Operaciones", "semestre": 5, "prerequisitos": [], "tel": false },
+    { "codigo": "S504", "nombre": "Paradigmas y Lenguajes de Programación", "semestre": 5, "prerequisitos": [], "tel": false },
+    { "codigo": "S505", "nombre": "Arquitectura de Computadores", "semestre": 5, "prerequisitos": [], "tel": false },
+    { "codigo": "S506", "nombre": "Inglés para Ingeniería III", "semestre": 5, "prerequisitos": [], "tel": false },
+    { "codigo": "S507", "nombre": "Ampliando la mirada en Derechos Humanos, violencia y discriminación de género, interculturalidad y ciudadanía", "semestre": 5, "prerequisitos": [], "tel": false },
+
+    { "codigo": "S601", "nombre": "Inteligencia Artificial", "semestre": 6, "prerequisitos": [], "tel": false },
+    { "codigo": "S602", "nombre": "Teoría de la Computación", "semestre": 6, "prerequisitos": [], "tel": false },
+    { "codigo": "S603", "nombre": "Electrónica Aplicada", "semestre": 6, "prerequisitos": [], "tel": false },
+    { "codigo": "S604", "nombre": "Tópicos Avanzados de Bases de Datos", "semestre": 6, "prerequisitos": [], "tel": false },
+    { "codigo": "S605", "nombre": "Sistemas Operativos", "semestre": 6, "prerequisitos": [], "tel": false },
+
+    { "codigo": "S701", "nombre": "Aprendizaje Automático", "semestre": 7, "prerequisitos": [], "tel": false },
+    { "codigo": "S702", "nombre": "Internet de las Cosas", "semestre": 7, "prerequisitos": [], "tel": false },
+    { "codigo": "S703", "nombre": "Ingeniería de Software", "semestre": 7, "prerequisitos": [], "tel": false },
+    { "codigo": "S704", "nombre": "Preparación y Evaluación de Proyectos", "semestre": 7, "prerequisitos": [], "tel": false },
+    { "codigo": "S705", "nombre": "Redes y Sistemas Distribuidos", "semestre": 7, "prerequisitos": [], "tel": false },
+
+    { "codigo": "S801", "nombre": "Sistemas Inteligentes", "semestre": 8, "prerequisitos": [], "tel": false },
+    { "codigo": "S802", "nombre": "Innovación y Emprendimiento Informático", "semestre": 8, "prerequisitos": [], "tel": false },
+    { "codigo": "S803", "nombre": "Taller de Desarrollo I", "semestre": 8, "prerequisitos": [], "tel": false },
+    { "codigo": "S804", "nombre": "Desafío de Proyecto de Ingeniería II", "semestre": 8, "prerequisitos": [], "tel": false },
+    { "codigo": "S805", "nombre": "Sistemas de Información", "semestre": 8, "prerequisitos": [], "tel": false },
+    { "codigo": "S806", "nombre": "Gestión de Proyectos Informáticos", "semestre": 8, "prerequisitos": [], "tel": false },
+
+    { "codigo": "S901", "nombre": "Informática y Sociedad", "semestre": 9, "prerequisitos": [], "tel": false },
+    { "codigo": "S902", "nombre": "Taller de Desarrollo II", "semestre": 9, "prerequisitos": [], "tel": false },
+    { "codigo": "S903", "nombre": "Electivo de Formación Profesional I", "semestre": 9, "prerequisitos": [], "tel": false },
+    { "codigo": "S904", "nombre": "Electivo de Formación Profesional II", "semestre": 9, "prerequisitos": [], "tel": false },
+
+    { "codigo": "S1001", "nombre": "Taller de Desarrollo III", "semestre": 10, "prerequisitos": [], "tel": false },
+    { "codigo": "S1002", "nombre": "Electivo de Formación Profesional III", "semestre": 10, "prerequisitos": [], "tel": false },
+    { "codigo": "S1003", "nombre": "Electivo de Formación Profesional IV", "semestre": 10, "prerequisitos": [], "tel": false },
+    { "codigo": "S1004", "nombre": "Práctica Profesional", "semestre": 10, "prerequisitos": [], "tel": false }
+
+  ],
+
+  "notes": "Asignaturas extraídas desde imagen del plan de estudios dispuesto en la pagina de admision Uls. "
+}

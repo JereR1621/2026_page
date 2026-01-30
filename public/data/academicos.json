@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "nombre": "Dr. Juan Pérez González",
+    "cargo": "Director de Departamento",
+    "departamento": "Computación e Informática",
+    "email": "jperez@userena.cl",
+    "telefono": "+56 51 2 204 001",
+    "area": "Inteligencia Artificial, Machine Learning",
+    "avatar": "JP",
+    "experiencia": "15 años en investigación en IA"
+  },
+  {
+    "id": 2,
+    "nombre": "Dra. María Rodríguez Silva",
+    "cargo": "Jefa de Carrera",
+    "departamento": "Computación e Informática",
+    "email": "mrodriguez@userena.cl",
+    "telefono": "+56 51 2 204 002",
+    "area": "Ingeniería de Software, Calidad de Software",
+    "avatar": "MR",
+    "experiencia": "12 años en desarrollo de software"
+  },
+  {
+    "id": 3,
+    "nombre": "Dr. Carlos López Martínez",
+    "cargo": "Profesor Titular",
+    "departamento": "Computación e Informática",
+    "email": "clopez@userena.cl",
+    "telefono": "+56 51 2 204 003",
+    "area": "Base de Datos, Big Data",
+    "avatar": "CL",
+    "experiencia": "18 años en sistemas de bases de datos"
+  },
+  {
+    "id": 4,
+    "nombre": "Dra. Valentina Campos Ríos",
+    "cargo": "Profesora Asociada",
+    "departamento": "Computación e Informática",
+    "email": "vcampos@userena.cl",
+    "telefono": "+56 51 2 204 004",
+    "area": "Ciberseguridad, Ingeniería de Software",
+    "avatar": "VC",
+    "experiencia": "10 años en seguridad de aplicaciones"
+  }
+]

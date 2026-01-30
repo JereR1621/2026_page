@@ -1,0 +1,8 @@
+{
+  "miembros": [
+    { "nombre": "Laura Muñoz", "cargo": "Presidenta", "periodo": "2024-2025" },
+    { "nombre": "Pedro Díaz", "cargo": "Secretario", "periodo": "2024-2025" },
+    { "nombre": "Carla Rojas", "cargo": "Representante Estudiantil", "periodo": "2024" },
+    { "nombre": "Felipe Herrera", "cargo": "Tesorero", "periodo": "2024-2025" }
+  ]
+}
