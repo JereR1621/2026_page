@@ -1,9 +1,13 @@
 /**
  * App principal: navegación por hash y renderizado de secciones.
  */
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import logoVertical from './img/logo_vertical.png'
 import Portal from './components/Portal.jsx'
+import SearchOverlay from './components/SearchOverlay.jsx'
+import { useInitialScroll } from './hooks/useInitialScroll.js'
+import { useScrollSpy } from './hooks/useScrollSpy.js'
+import { useSearchState } from './hooks/useSearchState.js'
 
 /**
  * Gestiona el hash activo de la URL para navegación por secciones.
@@ -44,7 +48,36 @@ function scrollToHash(href) {
  * @param {Object} props
  * @param {string} props.activeHash
  */
-function Header({ activeHash }) {
+const NAV_ITEMS = [
+  { href: '#inicio', label: 'Inicio', icon: (
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 8h-3v10h-5v-6H11v6H6V11H3l9-8z"/></svg>
+  ) },
+  { href: '#carrera', label: 'La Carrera', icon: (
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5a10 10 0 100 20 10 10 0 000-20z"/></svg>
+  ) },
+  { href: '#competencias', label: 'Competencias', icon: (
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z"/></svg>
+  ) },
+  { href: '#malla', label: 'Plan de estudios', icon: (
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v4H4V4zm0 6h16v10H4V10zm3 2v6h4v-6H7zm6 0v6h4v-6h-4z"/></svg>
+  ) },
+  { href: '#admision', label: 'Admisión', icon: (
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4zm0 2.2L6 6.8V12c0 4.1 2.7 7.8 6 8.4 3.3-.6 6-4.3 6-8.4V6.8l-6-2.6z"/></svg>
+  ) },
+  { href: '#noticias', label: 'Noticias', icon: (
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h14v14H4V4zm2 2v2h10V6H6zm0 4h10v2H6v-2zm0 4h6v2H6v-2zm14 0h-2V6h2v8z"/></svg>
+  ) },
+  { href: '#organigrama', label: 'Organigrama', icon: (
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v4h-4V3zM4 17h4v4H4v-4zm12 0h4v4h-4v-4zM11 7h2v3h4v3h-2v-1H9v1H7v-3h4V7z"/></svg>
+  ) },
+  { href: '#contacto', label: 'Contacto', icon: (
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.1 22 2 13.9 2 3c0-.6.4-1 1-1h3.9c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2z"/></svg>
+  ) },
+]
+
+const SECTION_HASHES = ['#inicio', '#carrera', '#competencias', '#malla', '#admision', '#noticias', '#organigrama', '#contacto']
+
+function Header({ activeHash, navItems = NAV_ITEMS, onSearchOpen }) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [sessionUser, setSessionUser] = useState(null)
 
@@ -167,32 +200,6 @@ function Header({ activeHash }) {
     window.location.hash = '#portal'
   }
 
-  
-  const nav = [
-    { href: '#inicio', label: 'Inicio', icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 8h-3v10h-5v-6H11v6H6V11H3l9-8z"/></svg>
-    ) },
-    { href: '#carrera', label: 'La Carrera', icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5a10 10 0 100 20 10 10 0 000-20z"/></svg>
-    ) },
-    { href: '#malla', label: 'Plan de estudios', icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v4H4V4zm0 6h16v10H4V10zm3 2v6h4v-6H7zm6 0v6h4v-6h-4z"/></svg>
-    ) },
-    { href: '#admision', label: 'Admisión', icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4zm0 2.2L6 6.8V12c0 4.1 2.7 7.8 6 8.4 3.3-.6 6-4.3 6-8.4V6.8l-6-2.6z"/></svg>
-    ) },
-    { href: '#noticias', label: 'Noticias', icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h14v14H4V4zm2 2v2h10V6H6zm0 4h10v2H6v-2zm0 4h6v2H6v-2zm14 0h-2V6h2v8z"/></svg>
-    ) },
-    { href: '#organigrama', label: 'Organigrama', icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v4h-4V3zM4 17h4v4H4v-4zm12 0h4v4h-4v-4zM11 7h2v3h4v3h-2v-1H9v1H7v-3h4V7z"/></svg>
-    ) },
-    { href: '#contacto', label: 'Contacto', icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.1 22 2 13.9 2 3c0-.6.4-1 1-1h3.9c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2z"/></svg>
-    ) },
-    
-  ]
-
   return (
     <header className="site-header" role="banner">
       <div className="container container--wide site-header__inner">
@@ -213,7 +220,7 @@ function Header({ activeHash }) {
         </div>
 
         <nav className="site-header__nav" id="main-nav" aria-label="Navegación principal">
-          {nav.map((item) => (
+          {navItems.map((item) => (
             <a
               key={item.href}
               className={`navlink ${activeHash === item.href ? 'is-active' : ''}`}
@@ -225,7 +232,13 @@ function Header({ activeHash }) {
             </a>
           ))}
 
-          <button className="navsearch" type="button" aria-label="Buscar" onClick={() => alert('Búsqueda: pendiente de implementar')}
+          <button
+            className="navsearch"
+            type="button"
+            aria-label="Buscar en el sitio"
+            aria-haspopup="dialog"
+            aria-controls="site-search"
+            onClick={onSearchOpen}
           >
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105.29 14.06l4.32 4.32 1.42-1.42-4.32-4.32A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
           </button>
@@ -274,7 +287,7 @@ function Header({ activeHash }) {
       {!mobileOpen ? null : <div className="mobile-backdrop" onClick={() => setMobileOpen(false)} />}
 
       <div className="site-header__mobile" id="mobile-nav" hidden={!mobileOpen}>
-        {nav.map((item) => (
+        {navItems.map((item) => (
           <a key={item.href} href={item.href} onClick={go(item.href)}>
             {item.label}
           </a>
@@ -1526,93 +1539,119 @@ function Footer() {
  * Gestiona navegación por hash, detección de scroll y renderizado de secciones.
  */
 
+/**
+ * Public site layout wrapper.
+ *
+ * @param {Object} props - Component props.
+ * @param {string} props.activeHash - Active navigation hash.
+ * @param {Array} props.navItems - Navigation item list.
+ * @param {Array} props.news - News data collection.
+ * @param {Object} props.searchState - Search state container.
+ * @param {(href: string) => void} props.onNavigate - Navigation handler.
+ * @param {JSX.Element} props.children - Layout children content.
+ * @returns {JSX.Element} Site layout markup.
+ * @throws {Error} Throws when required props are missing.
+ */
+function SiteLayout({ activeHash, navItems, news, searchState, onNavigate, children }) {
+  if (!searchState) {
+    throw new Error('Search state is required to render the layout.')
+  }
+
+  return (
+    <>
+      <Header activeHash={activeHash} navItems={navItems} onSearchOpen={searchState.openSearch} />
+      <SearchOverlay
+        open={searchState.isOpen}
+        onClose={searchState.closeSearch}
+        query={searchState.query}
+        onChangeQuery={searchState.setQuery}
+        navItems={navItems}
+        news={news}
+        onNavigate={onNavigate}
+      />
+      {children}
+      <Contacto />
+      <Footer />
+    </>
+  )
+}
+
+/**
+ * Groups the main content sections for the public site.
+ *
+ * @param {Object} props - Component props.
+ * @param {Array} props.news - News data collection.
+ * @returns {JSX.Element} Main content markup.
+ * @throws {Error} Throws when news data is missing.
+ */
+function MainSections({ news }) {
+  if (!news) {
+    throw new Error('News data is required to render sections.')
+  }
+
+  return (
+    <main>
+      <Hero />
+      <HomeCards />
+      <UltimasNoticias news={news} />
+      <Carrera />
+      <Competencias />
+      <Malla />
+      <Admision />
+      <Noticias news={news} />
+      <Organigrama />
+    </main>
+  )
+}
+
+/**
+ * Creates a navigation handler that closes search and scrolls to a section.
+ *
+ * @param {Object} searchState - Search state container.
+ * @returns {(href: string) => void} Navigation handler.
+ * @throws {Error} Throws when search state is missing.
+ */
+function createSearchNavigateHandler(searchState) {
+  if (!searchState) {
+    throw new Error('Search state is required to create a navigation handler.')
+  }
+  return (href) => {
+    searchState.closeSearch()
+    scrollToHash(href)
+  }
+}
+
+/**
+ * App root for the public site and portal navigation.
+ *
+ * @returns {JSX.Element} Main application layout.
+ * @throws {Error} Throws when required hooks fail to initialize.
+ */
 export default function App() {
   const [activeHash, setActiveHash] = useHashActive('#inicio')
   const noticiasData = useNoticiasData()
-
+  const searchState = useSearchState()
   const isPortal = activeHash.startsWith('#portal')
 
-  
-  const didInitialScroll = useRef(false)
-  useEffect(() => {
-    if (isPortal) return
-    if (didInitialScroll.current) return
-    didInitialScroll.current = true
-    const h = window.location.hash
-    if (h) {
-      setTimeout(() => scrollToHash(h), 0)
-    }
-  }, [])
-
-    /**
-     * Scrollspy: marca la sección visible y sincroniza el hash para resaltar el menú.
-     */
-  useEffect(() => {
-    if (isPortal) return
-    const sections = ['#inicio', '#carrera', '#malla', '#admision', '#noticias', '#organigrama', '#contacto']
-    let ticking = false
-    
-    const updateActiveSection = () => {
-      const scrollPosition = window.scrollY + 150
-      let currentSection = '#inicio'
-      
-      for (const hash of sections) {
-        const element = document.querySelector(hash)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          const elementTop = rect.top + window.scrollY
-          
-          if (scrollPosition >= elementTop - 200) {
-            currentSection = hash
-          }
-        }
-      }
-      
-      if (currentSection !== activeHash) {
-        setActiveHash(currentSection)
-        if (history.replaceState) {
-          history.replaceState(null, '', currentSection)
-        }
-      }
-      
-      ticking = false
-    }
-    
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateActiveSection)
-        ticking = true
-      }
-    }
-    
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    updateActiveSection()
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [activeHash, setActiveHash])
+  useInitialScroll(isPortal, scrollToHash)
+  useScrollSpy({
+    isPortal,
+    sections: SECTION_HASHES,
+    activeHash,
+    setActiveHash,
+  })
 
   if (isPortal) return <Portal />
 
   return (
-    <>
-      <Header activeHash={activeHash} />
-      <main>
-        <Hero />
-        <HomeCards />
-        <UltimasNoticias news={noticiasData} />
-        <Carrera />
-
-        <Competencias />
-        <Malla />
-        <Admision />
-        <Noticias news={noticiasData} />
-        <Organigrama />
-      </main>
-      <Contacto />
-      <Footer />
-      
-    </>
+    <SiteLayout
+      activeHash={activeHash}
+      navItems={NAV_ITEMS}
+      news={noticiasData}
+      searchState={searchState}
+      onNavigate={createSearchNavigateHandler(searchState)}
+    >
+      <MainSections news={noticiasData} />
+    </SiteLayout>
   )
 }
